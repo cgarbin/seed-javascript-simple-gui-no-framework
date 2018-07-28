@@ -1,0 +1,89 @@
+body {
+  font-family: sans-serif;
+}
+
+/* Remove bullets from list items */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Each entry in the list is an <li> with a checkbox, text (or edit field)
+and edit/delete buttons. This aligns them horizontally. */
+li * {
+  float: left;
+}
+
+/* Show buttons as plain text for a cleaner look */
+button {
+  background: none; /* to not affect the input field border when focused */
+  border: 0px;
+  color: rgb(136, 136, 136);
+  font-size: 15px;
+}
+
+/* A hint to the user that these are actions */
+button:hover {
+  color: rgb(12, 12, 12);
+  background: rgb(227, 227, 227);
+}
+
+input[type="text"] {
+  margin: 0;
+  font-size: 15px;
+  line-height: 15px;
+  height: 15px;
+  padding: 3px;
+  font-family: sans-serif;
+}
+
+input[type="text"]:focus {
+  color: #333;
+}
+
+/* TODO: remove the label altogether to simplify */
+/* Force the input into a separate line */
+label[for="add-task"] {
+  display: block;
+  margin: 0 0 20px;
+}
+
+/* TODO: fix width to align with list elements */
+input#add-task {
+  width: 318px;
+}
+
+/* TODO: understand why this is needed to split <li> in separate lines */
+li {
+  overflow: hidden;
+}
+
+li > label {
+  width: 237px;
+}
+
+/* Keep edit/delete buttons aligned with non-edit items */
+li > input[type="text"] {
+  width: 226px;
+}
+
+/* Cross-out completed tasks */
+#completed-tasks label {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Input field in non-edit mode: hide it */
+ul li input[type="text"] {
+  display: none;
+}
+
+/* Input field in edit mode: show it... */
+ul li.editMode input[type="text"] {
+  display: block;
+}
+
+/* ...and hide text (so input field moves to the left, where the text was */
+ul li.editMode label {
+  display: none;
+}
