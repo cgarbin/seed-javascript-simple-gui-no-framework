@@ -1,8 +1,6 @@
 "use strict";
 
-// TODO: check if any of these can be made local
 const addTaskInput = document.getElementById("add-task");
-const addTaskButton = document.getElementsByTagName("button")[0];
 const todoTasksList = document.getElementById("todo-tasks");
 const completedTasksList = document.getElementById("completed-tasks");
 
@@ -77,7 +75,9 @@ function taskIncomplete() {
   bindTaskEvents(task, taskCompleted);
 }
 
-addTaskButton.onclick = addTask;
+// First button in the document is the "add new task" one
+document.getElementsByTagName("button")[0].onclick = addTask;
+
 // TODO: accept "enter" as well, also for edit mode
 // TODO: accept "esc" to get out of edit mode without changing text
 
