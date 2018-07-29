@@ -1,6 +1,8 @@
 "use strict";
 
 const todoTasksList = document.getElementById("todo-tasks");
+const EDIT_MODE = "editMode";
+const EDIT_LABEL = "Edit";
 
 /**
  * Creates a new task.
@@ -29,10 +31,11 @@ function newTaskListElement(taskDescription) {
 
   const editInput = document.createElement("input");
   editInput.type = "text";
+  editInput.onkeyup = cancelEditTask;
   task.appendChild(editInput);
 
   const editButton = document.createElement("button");
-  editButton.textContent = "Edit";
+  editButton.textContent = EDIT_LABEL;
   editButton.className = "edit";
   editButton.onclick = editTask;
   task.appendChild(editButton);
@@ -50,7 +53,7 @@ function newTaskListElement(taskDescription) {
  * Event handler for the "add task" button.
  */
 function addTask() {
-  const addTaskInput = document.getElementById("add-task");
+  const addTaskInput = document.getElementById("add-task-text");
   if (addTaskInput.value.length > 0) {
     todoTasksList.appendChild(newTaskListElement(addTaskInput.value));
     addTaskInput.value = "";
@@ -61,8 +64,6 @@ function addTask() {
  * Event handler for the edit/save button.
  */
 function editTask(event) {
-  const EDIT_MODE = "editMode";
-
   const task = event.target.parentNode;
   const editInput = task.querySelector("input[type=text]");
   const label = task.querySelector("label");
@@ -70,7 +71,7 @@ function editTask(event) {
 
   if (task.classList.contains(EDIT_MODE)) {
     // Switching out of edit mode
-    editButton.textContent = "Edit";
+    editButton.textContent = EDIT_LABEL;
     label.textContent = editInput.value;
   } else {
     // Switching to edit mode
@@ -79,6 +80,20 @@ function editTask(event) {
   }
 
   task.classList.toggle(EDIT_MODE);
+}
+
+/**
+ * Event handler for key presses in the task edit field.
+ *
+ * Get out of edit mode without making changes if the users presses
+ * the Esc key.
+ */
+function cancelEditTask(event) {
+  const task = event.target.parentNode;
+  if (task.classList.contains(EDIT_MODE) && event.key === "Escape") {
+    task.querySelector("button.edit").textContent = EDIT_LABEL;
+    task.classList.toggle(EDIT_MODE);
+  }
 }
 
 /**
@@ -102,10 +117,12 @@ function taskCompleted(event) {
   }
 }
 
-// First button in the document is the "add new task" one
-// TODO: accept "enter" as well, also for edit mode
-// TODO: accept "esc" to get out of edit mode without changing text
 document.getElementById("add-task-button").onclick = addTask;
+document.getElementById("add-task-text").onkeyup = function(event) {
+  if (event.key === "Enter") {
+    addTask();
+  }
+};
 
 // Begin test code
 // Add a few elements to speed up test

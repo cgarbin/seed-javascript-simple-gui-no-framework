@@ -43,13 +43,13 @@ input[type="text"]:focus {
 
 /* TODO: remove the label altogether to simplify */
 /* Force the input into a separate line */
-label[for="add-task"] {
+label[for="add-task-text"] {
   display: block;
   margin: 0 0 20px;
 }
 
 /* TODO: fix width to align with list elements */
-input#add-task {
+input#add-task-text {
   width: 318px;
 }
 
