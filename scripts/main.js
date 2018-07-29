@@ -4,6 +4,19 @@ const addTaskInput = document.getElementById("add-task");
 const todoTasksList = document.getElementById("todo-tasks");
 const completedTasksList = document.getElementById("completed-tasks");
 
+/**
+ * Creates a new task.
+ *
+ * Each task is an <li> item with a checkbox, the task text and edit/delete
+ * buttons. An input field is also added, but it's hidden by CSS until the
+ * user presses the Edit button.
+ *
+ * The functions uses createElement for each item to avoid calling the
+ * potentially dangerous innerHTML. The actual text is set with textContent
+ * to avoid interpreting it as HTML.
+ *
+ * @param {string} taskDescription The task description (what the user entered)
+ */
 function newTaskListElement(taskDescription) {
   const task = document.createElement("li");
 
@@ -32,6 +45,9 @@ function newTaskListElement(taskDescription) {
   return task;
 }
 
+/**
+ * Event handler for the "add task" button.
+ */
 function addTask() {
   console.log("Add task");
   const listItem = newTaskListElement(addTaskInput.value);
@@ -41,6 +57,9 @@ function addTask() {
   addTaskInput.value = "";
 }
 
+/**
+ * Event handler for the edit/save button.
+ */
 function editTask() {
   console.log("Edit task");
 
@@ -66,6 +85,9 @@ function editTask() {
   task.classList.toggle(EDIT_MODE);
 }
 
+/**
+ * Event handler for the delete button.
+ */
 function deleteTask() {
   console.log("Delete task");
 
@@ -73,6 +95,10 @@ function deleteTask() {
   task.parentNode.removeChild(task);
 }
 
+/**
+ * Event handler for the checkbox when it was unchecked (task is changing from
+ * "to do" to "completed").
+ */
 function taskCompleted() {
   console.log("Complete task");
 
@@ -81,6 +107,10 @@ function taskCompleted() {
   bindTaskEvents(task, taskIncomplete);
 }
 
+/**
+ * Event handler for the checkbox when it was checked (task is changing from
+ * "completed" to "to do").
+ */
 function taskIncomplete() {
   console.log("Incomplete task");
 
@@ -89,16 +119,15 @@ function taskIncomplete() {
   bindTaskEvents(task, taskCompleted);
 }
 
-// First button in the document is the "add new task" one
-// TODO: replace with getElementById
-document.getElementsByTagName("button")[0].onclick = addTask;
-
-// TODO: accept "enter" as well, also for edit mode
-// TODO: accept "esc" to get out of edit mode without changing text
-
-// TODO: This should not be needed if we check the checkbox value in one handler
-// (combine both handlers into one)
+/**
+ * Binds the event handlers for a task item.
+ *
+ * @param {Element} taskListItem The task item
+ * @param {function} checkBoxEventHandler The event handler for the checkbox
+ */
 function bindTaskEvents(taskListItem, checkBoxEventHandler) {
+  // TODO: This should not be needed if we check the checkbox value in one handler
+  // (combine both handlers into one)
   console.log("Bind list item events");
 
   const checkBox = taskListItem.querySelector("input[type=checkbox]");
@@ -109,6 +138,12 @@ function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   deleteButton.onclick = deleteTask;
   checkBox.onchange = checkBoxEventHandler;
 }
+
+// First button in the document is the "add new task" one
+// TODO: replace with getElementById
+// TODO: accept "enter" as well, also for edit mode
+// TODO: accept "esc" to get out of edit mode without changing text
+document.getElementsByTagName("button")[0].onclick = addTask;
 
 // TODO: this is only needed because the HTML already has items
 // Can be removed if the HTML is cleaned up
