@@ -1,8 +1,6 @@
 "use strict";
 
-const addTaskInput = document.getElementById("add-task");
 const todoTasksList = document.getElementById("todo-tasks");
-const completedTasksList = document.getElementById("completed-tasks");
 
 /**
  * Creates a new task.
@@ -52,6 +50,7 @@ function newTaskListElement(taskDescription) {
  * Event handler for the "add task" button.
  */
 function addTask() {
+  const addTaskInput = document.getElementById("add-task");
   todoTasksList.appendChild(newTaskListElement(addTaskInput.value));
   addTaskInput.value = "";
 }
@@ -94,6 +93,7 @@ function deleteTask(event) {
 function taskCompleted(event) {
   const task = event.target.parentNode;
   if (event.target.checked) {
+    const completedTasksList = document.getElementById("completed-tasks");
     completedTasksList.appendChild(task);
   } else {
     todoTasksList.appendChild(task);
