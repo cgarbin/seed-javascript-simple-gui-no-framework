@@ -102,10 +102,9 @@ function taskCompleted(event) {
 }
 
 // First button in the document is the "add new task" one
-// TODO: replace with getElementById
 // TODO: accept "enter" as well, also for edit mode
 // TODO: accept "esc" to get out of edit mode without changing text
-document.getElementsByTagName("button")[0].onclick = addTask;
+document.getElementById("add-task-button").onclick = addTask;
 
 // Begin test code
 // Add a few elements to speed test
