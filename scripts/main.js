@@ -52,10 +52,7 @@ function newTaskListElement(taskDescription) {
  * Event handler for the "add task" button.
  */
 function addTask() {
-  console.log("Add task");
-  const listItem = newTaskListElement(addTaskInput.value);
-  todoTasksList.appendChild(listItem);
-
+  todoTasksList.appendChild(newTaskListElement(addTaskInput.value));
   addTaskInput.value = "";
 }
 
@@ -63,8 +60,6 @@ function addTask() {
  * Event handler for the edit/save button.
  */
 function editTask(event) {
-  console.log("Edit task" + event);
-
   const EDIT_MODE = "editMode";
 
   // TODO: check if we need "this" - don't we get the element in the event?
@@ -90,8 +85,6 @@ function editTask(event) {
  * Event handler for the delete button.
  */
 function deleteTask(event) {
-  console.log("Delete task" + event);
-
   const task = event.target.parentNode;
   task.parentNode.removeChild(task);
 }
@@ -100,8 +93,6 @@ function deleteTask(event) {
  * Event handler for the checkbox.
  */
 function taskCompleted(event) {
-  console.log("Complete task" + event);
-
   const task = event.target.parentNode;
   if (event.target.checked) {
     completedTasksList.appendChild(task);
