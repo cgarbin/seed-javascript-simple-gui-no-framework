@@ -32,8 +32,6 @@ input[type="text"] {
   margin: 0;
   font-size: 15px;
   line-height: 15px;
-  height: 15px;
-  padding: 3px;
   font-family: sans-serif;
 }
 
@@ -41,30 +39,29 @@ input[type="text"]:focus {
   color: #333;
 }
 
-/* TODO: remove the label altogether to simplify */
-/* Force the input into a separate line */
+/* Force the new task input field into a separate line */
 label[for="add-task-text"] {
   display: block;
   margin: 0 0 20px;
 }
 
-/* TODO: fix width to align with list elements */
 input#add-task-text {
-  width: 318px;
+  width: 280px;
 }
 
-/* TODO: understand why this is needed to split <li> in separate lines */
+/* This is needed to show each <li> in a separate line, left aligend
+   (although I don't quite understand why) */
 li {
   overflow: hidden;
 }
 
 li > label {
-  width: 237px;
+  width: 280px;
 }
 
 /* Keep edit/delete buttons aligned with non-edit items */
 li > input[type="text"] {
-  width: 226px;
+  width: 267px;
 }
 
 /* Cross-out completed tasks */
