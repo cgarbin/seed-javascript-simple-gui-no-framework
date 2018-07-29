@@ -95,27 +95,17 @@ function deleteTask(event) {
 }
 
 /**
- * Event handler for the checkbox when it was unchecked (task is changing from
- * "to do" to "completed").
+ * Event handler for the checkbox.
  */
 function taskCompleted(event) {
   console.log("Complete task" + event);
 
   const task = event.target.parentNode;
-  completedTasksList.appendChild(task);
-  bindTaskEvents(task, taskIncomplete);
-}
-
-/**
- * Event handler for the checkbox when it was checked (task is changing from
- * "completed" to "to do").
- */
-function taskIncomplete(event) {
-  console.log("Incomplete task" + event);
-
-  const task = event.target.parentNode;
-  todoTasksList.appendChild(task);
-  bindTaskEvents(task, taskCompleted);
+  if (event.target.checked) {
+    completedTasksList.appendChild(task);
+  } else {
+    todoTasksList.appendChild(task);
+  }
 }
 
 /**
@@ -151,5 +141,5 @@ for (let i = 0; i < todoTasksList.children.length; i++) {
 }
 
 for (let i = 0; i < completedTasksList.children.length; i++) {
-  bindTaskEvents(completedTasksList.children[i], taskIncomplete);
+  bindTaskEvents(completedTasksList.children[i], taskCompleted);
 }
