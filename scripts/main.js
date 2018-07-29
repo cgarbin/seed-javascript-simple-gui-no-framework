@@ -51,12 +51,15 @@ function editTask() {
   const task = this.parentNode;
   const editInput = task.querySelector("input[type=text]");
   const label = task.querySelector("label");
+  const editButton = task.querySelector("button.edit");
 
   if (task.classList.contains(EDIT_MODE)) {
-    // Switching out of edit mode: update task description with new text
+    // Switching out of edit mode
+    editButton.textContent = "Edit";
     label.textContent = editInput.value;
   } else {
-    // Switching to edit mode: show input with current task description
+    // Switching to edit mode
+    editButton.textContent = "Save";
     editInput.value = label.textContent;
   }
 
