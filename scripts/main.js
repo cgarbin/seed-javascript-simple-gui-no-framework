@@ -78,6 +78,14 @@ function editTask(event) {
     // Switching to edit mode
     editButton.textContent = "Save";
     editInput.value = label.textContent;
+
+    // Switch focus to edit field to let the user start changing it
+    // without another mouse click. Need to do this after the mouse
+    // event is processed, hence wrapping in the setTimeout.
+    // See some discussions in https://stackoverflow.com/q/896521.
+    setTimeout(function() {
+      editInput.focus();
+    }, 10);
   }
 
   task.classList.toggle(EDIT_MODE);
