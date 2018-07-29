@@ -63,7 +63,6 @@ function addTask() {
 function editTask() {
   console.log("Edit task");
 
-  // TODO: change button text Edit <-> Save
   const EDIT_MODE = "editMode";
 
   // TODO: check if we need "this" - don't we get the element in the event?
