@@ -35,10 +35,6 @@ input[type="text"] {
   font-family: sans-serif;
 }
 
-input[type="text"]:focus {
-  color: #333;
-}
-
 /* Force the new task input field into a separate line */
 label[for="add-task-text"] {
   display: block;
