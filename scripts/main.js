@@ -60,13 +60,13 @@ function addTask() {
 /**
  * Event handler for the edit/save button.
  */
-function editTask() {
-  console.log("Edit task");
+function editTask(event) {
+  console.log("Edit task" + event);
 
   const EDIT_MODE = "editMode";
 
   // TODO: check if we need "this" - don't we get the element in the event?
-  const task = this.parentNode;
+  const task = event.target.parentNode;
   const editInput = task.querySelector("input[type=text]");
   const label = task.querySelector("label");
   const editButton = task.querySelector("button.edit");
@@ -87,10 +87,10 @@ function editTask() {
 /**
  * Event handler for the delete button.
  */
-function deleteTask() {
-  console.log("Delete task");
+function deleteTask(event) {
+  console.log("Delete task" + event);
 
-  const task = this.parentNode;
+  const task = event.target.parentNode;
   task.parentNode.removeChild(task);
 }
 
@@ -98,10 +98,10 @@ function deleteTask() {
  * Event handler for the checkbox when it was unchecked (task is changing from
  * "to do" to "completed").
  */
-function taskCompleted() {
-  console.log("Complete task");
+function taskCompleted(event) {
+  console.log("Complete task" + event);
 
-  const task = this.parentNode;
+  const task = event.target.parentNode;
   completedTasksList.appendChild(task);
   bindTaskEvents(task, taskIncomplete);
 }
@@ -110,10 +110,10 @@ function taskCompleted() {
  * Event handler for the checkbox when it was checked (task is changing from
  * "completed" to "to do").
  */
-function taskIncomplete() {
-  console.log("Incomplete task");
+function taskIncomplete(event) {
+  console.log("Incomplete task" + event);
 
-  const task = this.parentNode;
+  const task = event.target.parentNode;
   todoTasksList.appendChild(task);
   bindTaskEvents(task, taskCompleted);
 }
