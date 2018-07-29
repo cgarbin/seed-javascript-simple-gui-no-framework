@@ -20,7 +20,6 @@ input[type="text"] {
   margin: 0;
   font-size: 15px;
   line-height: 15px;
-  font-family: sans-serif;
 }
 
 /* Force the new task input field into a separate line */
