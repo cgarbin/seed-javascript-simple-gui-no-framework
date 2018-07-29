@@ -16,7 +16,8 @@ Covers:
 Sources for this code:
 
 - [The simple Javascript seed](https://github.com/cgarbin/seed-javascript-simple-html-css-js)
-- https://codepen.io/franklynroth/pen/ZYeaBd
+- The inspiration to use lists (`<li>`) for the user interface and the CSS that made them
+  look nicer (e.g. remove the bullet) came from this [CodePen](https://codepen.io/franklynroth/pen/ZYeaBd).
 
 # License
 
