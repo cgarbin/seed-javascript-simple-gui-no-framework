@@ -62,7 +62,6 @@ function addTask() {
 function editTask(event) {
   const EDIT_MODE = "editMode";
 
-  // TODO: check if we need "this" - don't we get the element in the event?
   const task = event.target.parentNode;
   const editInput = task.querySelector("input[type=text]");
   const label = task.querySelector("label");
@@ -107,7 +106,7 @@ function taskCompleted(event) {
 document.getElementById("add-task-button").onclick = addTask;
 
 // Begin test code
-// Add a few elements to speed test
+// Add a few elements to speed up test
 todoTasksList.appendChild(newTaskListElement("xyz"));
 todoTasksList.appendChild(newTaskListElement("abc"));
 // End test code
