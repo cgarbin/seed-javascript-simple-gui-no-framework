@@ -51,8 +51,10 @@ function newTaskListElement(taskDescription) {
  */
 function addTask() {
   const addTaskInput = document.getElementById("add-task");
-  todoTasksList.appendChild(newTaskListElement(addTaskInput.value));
-  addTaskInput.value = "";
+  if (addTaskInput.value.length > 0) {
+    todoTasksList.appendChild(newTaskListElement(addTaskInput.value));
+    addTaskInput.value = "";
+  }
 }
 
 /**
