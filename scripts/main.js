@@ -5,19 +5,31 @@ const todoTasksList = document.getElementById("todo-tasks");
 const completedTasksList = document.getElementById("completed-tasks");
 
 function newTaskListElement(taskDescription) {
-  // TODO: escape the description to make it safe (or Node.textContent - see below)
-  // TODO: replace innerHTML with Node.textContent (security)
-  const taskInnerHTML = `
-      <input type="checkbox">
-      <label>${taskDescription}</label>
-      <input type="text">
-      <button class="edit">Edit</button>
-      <button class="delete">Delete</button>`;
+  const task = document.createElement("li");
 
-  const taskLi = document.createElement("li");
-  taskLi.innerHTML = taskInnerHTML;
+  const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  task.appendChild(checkBox);
 
-  return taskLi;
+  const label = document.createElement("label");
+  label.textContent = taskDescription;
+  task.appendChild(label);
+
+  const editInput = document.createElement("input");
+  editInput.type = "text";
+  task.appendChild(editInput);
+
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit";
+  editButton.className = "edit";
+  task.appendChild(editButton);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.className = "delete"; // TODO: do we need this class name after the CSS cleanup?
+  task.appendChild(deleteButton);
+
+  return task;
 }
 
 function addTask() {
@@ -76,6 +88,7 @@ function taskIncomplete() {
 }
 
 // First button in the document is the "add new task" one
+// TODO: replace with getElementById
 document.getElementsByTagName("button")[0].onclick = addTask;
 
 // TODO: accept "enter" as well, also for edit mode
