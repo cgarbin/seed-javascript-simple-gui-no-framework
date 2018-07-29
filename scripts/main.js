@@ -16,6 +16,7 @@ const EDIT_LABEL = "Edit";
  * to avoid interpreting it as HTML.
  *
  * @param {string} taskDescription The task description (what the user entered)
+ * @returns New DOM element representing the task, with all event handlers in place
  */
 function newTaskListElement(taskDescription) {
   const task = document.createElement("li");
