@@ -22,6 +22,7 @@ function newTaskListElement(taskDescription) {
 
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
+  checkBox.onchange = taskCompleted;
   task.appendChild(checkBox);
 
   const label = document.createElement("label");
@@ -35,11 +36,13 @@ function newTaskListElement(taskDescription) {
   const editButton = document.createElement("button");
   editButton.textContent = "Edit";
   editButton.className = "edit";
+  editButton.onclick = editTask;
   task.appendChild(editButton);
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.className = "delete";
+  deleteButton.onclick = deleteTask;
   task.appendChild(deleteButton);
 
   return task;
@@ -52,7 +55,6 @@ function addTask() {
   console.log("Add task");
   const listItem = newTaskListElement(addTaskInput.value);
   todoTasksList.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
 
   addTaskInput.value = "";
 }
@@ -108,38 +110,14 @@ function taskCompleted(event) {
   }
 }
 
-/**
- * Binds the event handlers for a task item.
- *
- * @param {Element} taskListItem The task item
- * @param {function} checkBoxEventHandler The event handler for the checkbox
- */
-function bindTaskEvents(taskListItem, checkBoxEventHandler) {
-  // TODO: This should not be needed if we check the checkbox value in one handler
-  // (combine both handlers into one)
-  console.log("Bind list item events");
-
-  const checkBox = taskListItem.querySelector("input[type=checkbox]");
-  const editButton = taskListItem.querySelector("button.edit");
-  const deleteButton = taskListItem.querySelector("button.delete");
-
-  editButton.onclick = editTask;
-  deleteButton.onclick = deleteTask;
-  checkBox.onchange = checkBoxEventHandler;
-}
-
 // First button in the document is the "add new task" one
 // TODO: replace with getElementById
 // TODO: accept "enter" as well, also for edit mode
 // TODO: accept "esc" to get out of edit mode without changing text
 document.getElementsByTagName("button")[0].onclick = addTask;
 
-// TODO: this is only needed because the HTML already has items
-// Can be removed if the HTML is cleaned up
-for (let i = 0; i < todoTasksList.children.length; i++) {
-  bindTaskEvents(todoTasksList.children[i], taskCompleted);
-}
-
-for (let i = 0; i < completedTasksList.children.length; i++) {
-  bindTaskEvents(completedTasksList.children[i], taskCompleted);
-}
+// Begin test code
+// Add a few elements to speed test
+todoTasksList.appendChild(newTaskListElement("xyz"));
+todoTasksList.appendChild(newTaskListElement("abc"));
+// End test code
