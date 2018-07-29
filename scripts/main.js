@@ -22,7 +22,7 @@ function newTaskListElement(taskDescription) {
 
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
-  checkBox.onchange = taskCompleted;
+  checkBox.onchange = completeTask;
   task.appendChild(checkBox);
 
   const label = document.createElement("label");
@@ -107,7 +107,7 @@ function deleteTask(event) {
 /**
  * Event handler for the checkbox.
  */
-function taskCompleted(event) {
+function completeTask(event) {
   const task = event.target.parentNode;
   if (event.target.checked) {
     const completedTasksList = document.getElementById("completed-tasks");
