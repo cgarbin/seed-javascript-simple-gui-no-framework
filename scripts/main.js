@@ -26,7 +26,7 @@ function newTaskListElement(taskDescription) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
-  deleteButton.className = "delete"; // TODO: do we need this class name after the CSS cleanup?
+  deleteButton.className = "delete";
   task.appendChild(deleteButton);
 
   return task;
@@ -45,7 +45,6 @@ function editTask() {
   console.log("Edit task");
 
   // TODO: change button text Edit <-> Save
-
   const EDIT_MODE = "editMode";
 
   // TODO: check if we need "this" - don't we get the element in the event?
@@ -55,10 +54,10 @@ function editTask() {
 
   if (task.classList.contains(EDIT_MODE)) {
     // Switching out of edit mode: update task description with new text
-    label.innerText = editInput.value;
+    label.textContent = editInput.value;
   } else {
     // Switching to edit mode: show input with current task description
-    editInput.value = label.innerText;
+    editInput.value = label.textContent;
   }
 
   task.classList.toggle(EDIT_MODE);
