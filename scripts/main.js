@@ -73,7 +73,10 @@ function editTask(event) {
   if (task.classList.contains(EDIT_MODE)) {
     // Switching out of edit mode
     editButton.textContent = EDIT_LABEL;
-    label.textContent = editInput.value;
+    // Keep old text if user erased all content
+    if (editInput.value.length > 0) {
+      label.textContent = editInput.value;
+    }
   } else {
     // Switching to edit mode
     editButton.textContent = "Save";
